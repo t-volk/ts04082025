@@ -1,0 +1,9 @@
+*
+__debug*
+!.go
+!.md
+!.tmpl
+!.htm
+!.html
+!.js
+!.gitignore
