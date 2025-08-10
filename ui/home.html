@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <title>Тестовый сервер</title>
+</head>
+
+<body>
+    <h1>Test server</h1>
+    <ul>
+        {{range .Tasks}}
+        <li><b>Task #{{.Number}}</b>
+            <ul>
+                {{range .Objects}}
+                <li>{{.Name}} {{.Status}}</li>
+                {{end}}
+                <li>
+                    <form method="post" action="/task/{{.Number}}">
+                        <input type="hidden" name="oper" value="add"">
+                        <input type=" text" name="url">
+                        <input type="submit" value="add url file">
+                        <label>&nbsp;- method POST /task/{{.Number}} oper=add&url=[file url]</label>
+                    </form>
+                </li>
+            </ul>
+
+        </li>
+        {{end}}
+        <li>
+            <form method="post" action="/task">
+                <input type="submit" value="add task">&nbsp;
+                <label>- method POST /task</label>
+            </form>
+        </li>
+    </ul>
+
+    <div>&nbsp;</div>
+    <div style="color: red;"><b>{{.Status}}</b></div>
+    <div>&nbsp;</div>
+    <div>&nbsp;</div>
+    <form method="get" action="/">
+        <input type="submit" value="update status">&nbsp;
+        <label>- method GET /</label>
+    </form>
+    <div>&nbsp;</div>
+    <form method="post" action="/stop">
+        <input type="submit" value="stop server">&nbsp;
+        <label>- method POST /stop</label>
+    </form>
+</body>
+
+</html>
